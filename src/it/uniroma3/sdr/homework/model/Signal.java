@@ -79,6 +79,9 @@ public class Signal {
 		return this.values.length;
 	}
 	
+	public int getLughezza(){
+		return this.length;
+	}
 	public int hashCode() {
 		return this.values.hashCode();
 	}
@@ -98,6 +101,26 @@ public class Signal {
 
 		return equals;
 
+	}
+
+	public double[] getReale() {
+		return reale;
+	}
+
+	public void setReale(double[] reale) {
+		this.reale = reale;
+	}
+
+	public double[] getImmaginaria() {
+		return immaginaria;
+	}
+
+	public void setImmaginaria(double[] immaginaria) {
+		this.immaginaria = immaginaria;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
 	}
 
 	
