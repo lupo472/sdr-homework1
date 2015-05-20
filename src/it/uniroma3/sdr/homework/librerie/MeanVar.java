@@ -1,4 +1,4 @@
-package it.uniroma3.sdr.homework.signalprocessing;
+package it.uniroma3.sdr.homework.librerie;
 
 /**
  * Classe relativa al calcolo della media di un array di valori e della sua
