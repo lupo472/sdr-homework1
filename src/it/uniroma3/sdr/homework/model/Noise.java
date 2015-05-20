@@ -28,6 +28,7 @@ public class Noise {
 		double snr_linearizzato = Math.pow(10, (snr/10));
 		this.pot_rumore = (1/snr_linearizzato);
 		this.length = length;
+		
 		this.parteReale = new double[length];
 		for(int i = 0;i<this.length;i++){
 			campione = new Random();
