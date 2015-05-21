@@ -6,6 +6,7 @@ import java.io.IOException;
 import it.uniroma3.sdr.homework.librerie.MetodiArray;
 import it.uniroma3.sdr.homework.model.Noise;
 import it.uniroma3.sdr.homework.model.Signal;
+import javax.swing.*;
 
 /**
  * Classe realtiva all'elaborazione di un segnale.
@@ -75,24 +76,65 @@ public class SignalProcessor {
 	}
 	
 	public static void main(String[] args) throws IOException{
-		Signal segnale = FileReading.creaSegnaleDaFile("Sequenze_SDR_2015/Sequenza_1/output_3.dat");
-		System.out.println("Inizio stampa segnale da file...");
-		System.out.println(segnale.toString());
-		System.out.println("Fine stampa segnale da file.");
+		//carico valori da analizzare da input
+		double d = 0.0;
+		String numeroSeq = JOptionPane.showInputDialog ( "Digita il numero della sequenza che vuoi analizzare (da 1 a 3)" );
+		boolean check = false;
+		while(true){
+			try{
+				d = Double.parseDouble(numeroSeq);
+			}
+			catch(NumberFormatException e){
+				check=true;
+			}
+			if((d>0 && d<4) && (check==false)){
+				break;
+			}
+			check=false;
+			numeroSeq = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il numero della sequenza che vuoi analizzare (da 1 a 3)" );
+		}
+		check = false;
+		String numeroOutput = JOptionPane.showInputDialog ( "Digita il numero del segnale che vuoi analizzare (da 1 a 4)" );
+		while(true){
+			try{
+				d = Double.parseDouble(numeroOutput);
+			}
+			catch(NumberFormatException e){
+				check=true;
+			}
+			if((d>0 && d<5) && (check==false)){
+				break;
+			}
+			check=false;
+			numeroOutput = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il numero del segnale che vuoi analizzare (da 1 a 4)" );
+		}
+		//valori corretti inseriti nel path corrispondente
+		String path = "Sequenze_SDR_2015/Sequenza_"+numeroSeq+"/output_"+numeroOutput+".dat";
+		//lettura sequenza
+		System.out.println("Sto leggendo la Sequenza "+numeroSeq+", Output numero "+numeroOutput+"...");
+		Signal segnale = FileReading.creaSegnaleDaFile(path);
+//		System.out.println("Inizio stampa segnale da file...");
+//		System.out.println(segnale.toString());
+//		System.out.println("Fine stampa segnale da file.");
+		//calcolo soglia
 		System.out.println("");
-		System.out.println("Calcolo soglia...");
-		System.out.println("");
+		System.out.println("Calcolo della soglia...");
 		Soglia soglia = new Soglia(segnale, 3.1, 10, 13, 0.001);
-		System.out.println(soglia.toString());
+		double sogliaVal = soglia.determina();
+		System.out.println("Valore soglia = "+sogliaVal);
 		System.out.println("");
-		System.out.println("Calcolo la presenza dello spectrum hole...");
-		boolean confrontoSoglia = confronto_soglia(segnale, 3.1, soglia.determina());
+		//confronto soglia, spectrum hole detection
+		boolean confrontoSoglia = confronto_soglia(segnale, 3.1, sogliaVal);
 		if(confrontoSoglia==true){
-			System.out.println("e' presente lo spectrum hole");
+			System.out.println("e' presente lo spectrum hole.");
 		}
 		else{
-			System.out.println("NON e' presente lo spectrum hole");
+			System.out.println("NON e' presente lo spectrum hole.");
 		}
+		ProbabilitaDetection proDet = new ProbabilitaDetection(segnale, 3.1, 10, 18, sogliaVal);
+		System.out.println("");
+		System.out.println("Calcolo della probabilita' di detection...");
+		System.out.println("Probabilita' di detection = "+proDet.determina());
 	}
 
 }
