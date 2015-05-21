@@ -6,6 +6,8 @@
 
 package it.uniroma3.sdr.homework.model;
 
+import it.uniroma3.sdr.homework.signalprocessing.FileReading;
+
 public class Signal {
 	
 	/*
@@ -26,7 +28,7 @@ public class Signal {
 	
 	//<-- SEGNALE TIPO -->
 	public Signal(int lenght){
-		init(length);
+		init(lenght);
 	}
 	
 	/*
@@ -62,13 +64,6 @@ public class Signal {
 
 	public void setValues(Complex[] values) {
 		this.values = values;
-	}
-
-	public String toString(){
-		String s = "";
-		for(int i=0; i<this.getLength(); i++)
-			s+=this.values[i].toString()+", ";
-		return s;
 	}
 	
 	/**
@@ -121,6 +116,15 @@ public class Signal {
 
 	public void setLength(int length) {
 		this.length = length;
+	}
+	
+	@Override
+	public String toString(){
+		String s = "";
+		for(int i=0; i<this.length; i++){
+			System.out.println("[Re: "+getReale()[i]+", Im: "+getImmaginaria()[i]+"]");
+		}
+		return s;
 	}
 
 	

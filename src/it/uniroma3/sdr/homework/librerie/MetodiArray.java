@@ -28,7 +28,7 @@ public class MetodiArray {
 	 * Metodo per il modulo al quadrato dell'array delle repliche del rumore
 	 * 
 	 * @param array : array di double 
-	 * @return stesso array di double, i cui elementi però sono stati messi a modulo e alla potenza di 2
+	 * @return stesso array di double, i cui elementi perï¿½ sono stati messi a modulo e alla potenza di 2
 	 */
 	public static double[] moduloQuadrato(double[] array){
 
@@ -48,9 +48,7 @@ public class MetodiArray {
 	 * 
 	 */
 	public static double[] sommaArray(double[] a1, double[] a2){
-		
 		double[] somma = new double[a1.length];
-		
 		for(int i = 0;i<a1.length;i++)
 			somma[i] = a1[i] + a2[i];
 		
