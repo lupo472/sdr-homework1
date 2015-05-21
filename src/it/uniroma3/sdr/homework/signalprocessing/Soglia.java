@@ -20,7 +20,7 @@ public class Soglia extends EnergyDetector {
 		double soglia = 0;
 
 		for(int i = 0;i<this.getNum_prove();i++){
-			double[][] noise_blocks = new double[this.getNum_blocchi()][this.getSignal().getLughezza()];//array di array che conterrà come righe la somma degli array di parteImmaginaria e reale di  rumori
+			double[][] noise_blocks = new double[this.getNum_blocchi()][this.getSignal().getLughezza()];//array di array che conterrï¿½ come righe la somma degli array di parteImmaginaria e reale di  rumori
 			noise_blocks = popolaBlocchiNoise(noise_blocks);
 
 			double sign_mod = 0;//sommatoria dei moduli quadrati dei blocchi di rumore
@@ -53,4 +53,11 @@ public class Soglia extends EnergyDetector {
 	public void setPfa(double pfa) {
 		Pfa = pfa;
 	}
+
+	@Override
+	public String toString() {
+		return "Soglia [Pfa=" + Pfa + "]";
+	}
+	
+	
 }

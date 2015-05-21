@@ -1,6 +1,8 @@
 package it.uniroma3.sdr.homework.signalprocessing;
 
 
+import java.io.IOException;
+
 import it.uniroma3.sdr.homework.librerie.MetodiArray;
 import it.uniroma3.sdr.homework.model.Noise;
 import it.uniroma3.sdr.homework.model.Signal;
@@ -70,6 +72,27 @@ public class SignalProcessor {
 //			hole = true;
 //		
 	return hole;
+	}
+	
+	public static void main(String[] args) throws IOException{
+		Signal segnale = FileReading.creaSegnaleDaFile("Sequenze_SDR_2015/Sequenza_1/output_3.dat");
+		System.out.println("Inizio stampa segnale da file...");
+		System.out.println(segnale.toString());
+		System.out.println("Fine stampa segnale da file.");
+		System.out.println("");
+		System.out.println("Calcolo soglia...");
+		System.out.println("");
+		Soglia soglia = new Soglia(segnale, 3.1, 10, 13, 0.001);
+		System.out.println(soglia.toString());
+		System.out.println("");
+		System.out.println("Calcolo la presenza dello spectrum hole...");
+		boolean confrontoSoglia = confronto_soglia(segnale, 3.1, soglia.determina());
+		if(confrontoSoglia==true){
+			System.out.println("e' presente lo spectrum hole");
+		}
+		else{
+			System.out.println("NON e' presente lo spectrum hole");
+		}
 	}
 
 }

@@ -78,19 +78,8 @@ public class Signal {
 		this.values = values;
 	}
 
-	public String toString(){
-		String s = "";
-		for(int i=0; i<this.getLength(); i++)
-			s+=this.values[i].toString()+", ";
-		return s;
-	}
-
 	public int getLength(){
 		return this.values.length;
-	}
-	
-	public void setLength(int length) {
-		this.length = length;
 	}
 	
 	public int hashCode() {
@@ -141,5 +130,20 @@ public class Signal {
 	public void setImmaginaria(double[] immaginaria) {
 		this.immaginaria = immaginaria;
 	}
+
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+	
+	@Override
+	public String toString(){
+		String s = "";
+		for(int i=0; i<this.length; i++){
+			System.out.println("[Re: "+getReale()[i]+", Im: "+getImmaginaria()[i]+"]");
+		}
+		return s;
+	}
+
 	
 }
