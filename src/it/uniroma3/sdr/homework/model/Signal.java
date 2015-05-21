@@ -19,12 +19,23 @@ public class Signal {
 	
 	public Complex[] values;
 
+	/**
+	 * Costruttore basato sull'implementazione con un array di oggetti <strong>Complex</strong>,
+	 * che contiene dsia la parte reale che immaginaria
+	 * 
+	 * @param values : array di <strong>Complex</strong>
+	 */
 	public Signal(Complex[] values) {
 		super();
 		this.values = values;
 	}
 	
-	//<-- SEGNALE TIPO -->
+	/**
+	 * Costruttore basato sull'implementazione con 2 array di <strong>double</strong>
+	 * per la parte reale e immaginaria
+	 * 
+	 * @param lenght : lunghezza del segnale
+	 */
 	public Signal(int lenght){
 		init(length);
 	}
@@ -56,6 +67,9 @@ public class Signal {
 
 	/**** GETTER & SETTER ****/
 	
+	/*
+	 * Metodi relativi alla implementazione di un segnale con array di oggetti Complex
+	 */
 	public Complex[] getValues() {
 		return values;
 	}
@@ -70,18 +84,15 @@ public class Signal {
 			s+=this.values[i].toString()+", ";
 		return s;
 	}
-	
-	/**
-	 * Metodo per ottenere la lunghezza del segnale e quindi il numero di campioni del segnale
-	 * @return
-	 */
+
 	public int getLength(){
 		return this.values.length;
 	}
 	
-	public int getLughezza(){
-		return this.length;
+	public void setLength(int length) {
+		this.length = length;
 	}
+	
 	public int hashCode() {
 		return this.values.hashCode();
 	}
@@ -102,6 +113,18 @@ public class Signal {
 		return equals;
 
 	}
+	
+	
+	/*
+	 * Metodi relativi alla implementazione di un segnale con 2 array di double
+	 */
+	public int getLughezza(){
+		return this.length;
+	}
+
+	public void setLunghezza(int lunghezza){
+		this.length = lunghezza;
+	}
 
 	public double[] getReale() {
 		return reale;
@@ -118,10 +141,5 @@ public class Signal {
 	public void setImmaginaria(double[] immaginaria) {
 		this.immaginaria = immaginaria;
 	}
-
-	public void setLength(int length) {
-		this.length = length;
-	}
-
 	
 }
