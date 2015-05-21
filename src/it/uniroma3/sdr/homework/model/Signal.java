@@ -37,7 +37,7 @@ public class Signal {
 	 * @param lenght : lunghezza del segnale
 	 */
 	public Signal(int lenght){
-		init(length);
+		init(lenght);
 	}
 	
 	/*
