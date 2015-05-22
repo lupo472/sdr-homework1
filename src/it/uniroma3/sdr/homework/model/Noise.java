@@ -40,6 +40,8 @@ public class Noise {
 			campione = new Random();
 			parteImmaginaria[i] = campione.nextGaussian() * Math.sqrt(pot_rumore/2);
 		}
+		
+		this.varianza  = 1;
 	}
 
 	/*

@@ -19,7 +19,7 @@ public class ProbabilitaDetection extends EnergyDetector {
 	public double determina(){
 		double Pd = 0; //probabilità di detection
 		double[] z = new double[this.getNum_prove()];//array energia
-		int cont = 0; //variabile contatore
+		double cont = 0; //variabile contatore
 
 		for(int i = 0;i<this.getNum_prove();i++){
 			double[][] noise_blocks = new double[this.getNum_blocchi()][this.getSignal().getLughezza()];//array di array che conterrà come righe la somma degli array di parteImmaginaria e reale di  rumori
@@ -30,17 +30,17 @@ public class ProbabilitaDetection extends EnergyDetector {
 			for(int j = 0;j<this.getNum_blocchi();j++){
 				double[] sign_noise = MetodiArray.sommaArray(MetodiArray.sommaArray(this.getSignal().getImmaginaria(), this.getSignal().getReale()), noise_blocks[j]);//somma tra il segnale e un blocco di rumore
 				double detector_out = MetodiArray.sommaElementiArray(MetodiArray.moduloQuadrato(sign_noise));//modulo quadrato del blocco rumore
-				sign_mod = sign_mod + detector_out;
+				sign_mod += detector_out;
 			}
 
-			z[i] = sign_mod/this.getNum_blocchi();//calcolo dell'elemento i dell'array delle energie delle prove
+			z[i] = (double)sign_mod/(double)this.getNum_blocchi();//calcolo dell'elemento i dell'array delle energie delle prove
 			
 			if(z[i] > soglia)
 				cont++;
 
 		}
 
-		Pd = cont/this.getNum_prove();
+		Pd = (double)cont/(double)this.getNum_prove();
 		return Pd;
 	}
 	

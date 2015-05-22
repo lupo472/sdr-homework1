@@ -30,7 +30,7 @@ public class Soglia extends EnergyDetector {
 				sign_mod = sign_mod + detector_out;
 			}
 
-			z[i] = sign_mod/this.getNum_blocchi();//calcolo dell'elemento i dell'array delle energie delle prove
+			z[i] = (double)sign_mod/(double)this.getNum_blocchi();//calcolo dell'elemento i dell'array delle energie delle prove
 
 		}
 
