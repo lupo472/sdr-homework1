@@ -18,7 +18,7 @@ public class MeanVar {
 		for(int i = 0;i<array.length;i++)
 			sum += array[i];
 		
-		mean = sum/array.length;
+		mean = (double)sum/(double)array.length;
 		
 		return mean;
 
@@ -35,7 +35,7 @@ public class MeanVar {
 		for(int i = 0;i<array.length;i++)
 			sum += Math.pow(array[i] - mean, 2);
 			
-		var = sum/(array.length-1);
+		var = (double)sum/(double)((double)array.length-1);
 		
 		return var;
 		

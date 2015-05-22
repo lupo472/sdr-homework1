@@ -11,8 +11,10 @@ public class SNR {
 		
 		double[] pri_signal = MetodiArray.sommaArray(signal.getImmaginaria(), signal.getReale());
 		
-		z = MetodiArray.sommaElementiArray(MetodiArray.moduloQuadrato(pri_signal));//calcolo l'energia del segnale
-		SNR = 10*Math.log10(1/(z-1));
+		z = (double)MetodiArray.sommaElementiArray(MetodiArray.moduloQuadrato(pri_signal))/(double)signal.getLughezza();//calcolo l'energia del segnale
+//		SNR = (double)(10*Math.log10(1/(z-1)));//SNR in decibel
+		
+		SNR  = Math.sqrt(z-1);
 		
 		return SNR;
 	}

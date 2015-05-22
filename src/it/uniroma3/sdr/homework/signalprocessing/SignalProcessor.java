@@ -119,19 +119,19 @@ public class SignalProcessor {
 		//calcolo soglia
 		System.out.println("");
 		System.out.println("Calcolo della soglia...");
-		Soglia soglia = new Soglia(segnale, 3.1, 10, 13, 0.001);
+		Soglia soglia = new Soglia(segnale, SNR.calcolaSNR(segnale), 2, 3, 0.0001);
 		double sogliaVal = soglia.determina();
 		System.out.println("Valore soglia = "+sogliaVal);
 		System.out.println("");
 		//confronto soglia, spectrum hole detection
-		boolean confrontoSoglia = confronto_soglia(segnale, 3.1, sogliaVal);
+		boolean confrontoSoglia = confronto_soglia(segnale,SNR.calcolaSNR(segnale), sogliaVal);
 		if(confrontoSoglia==true){
 			System.out.println("e' presente lo spectrum hole.");
 		}
 		else{
 			System.out.println("NON e' presente lo spectrum hole.");
 		}
-		ProbabilitaDetection proDet = new ProbabilitaDetection(segnale, 3.1, 10, 18, sogliaVal);
+		ProbabilitaDetection proDet = new ProbabilitaDetection(segnale, SNR.calcolaSNR(segnale), 2, 3, sogliaVal);
 		System.out.println("");
 		System.out.println("Calcolo della probabilita' di detection...");
 		System.out.println("Probabilita' di detection = "+proDet.determina());

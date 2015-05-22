@@ -33,7 +33,7 @@ public class MetodiArray {
 	public static double[] moduloQuadrato(double[] array){
 
 		for(double i : array)
-			Math.pow(Math.abs(i),2);
+			i = Math.pow(Math.abs(i),2);
 
 		return array;
 	}
