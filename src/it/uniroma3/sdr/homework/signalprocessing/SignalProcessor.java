@@ -6,6 +6,7 @@ import java.io.IOException;
 import it.uniroma3.sdr.homework.librerie.MetodiArray;
 import it.uniroma3.sdr.homework.model.Noise;
 import it.uniroma3.sdr.homework.model.Signal;
+
 import javax.swing.*;
 
 /**
@@ -76,6 +77,7 @@ public class SignalProcessor {
 	}
 	
 	public static void main(String[] args) throws IOException{
+		
 		//carico valori da analizzare da input
 		double d = 0.0;
 		String numeroSeq = JOptionPane.showInputDialog ( "Digita il numero della sequenza che vuoi analizzare (da 1 a 3)" );
@@ -108,21 +110,88 @@ public class SignalProcessor {
 			check=false;
 			numeroOutput = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il numero del segnale che vuoi analizzare (da 1 a 4)" );
 		}
+		
 		//valori corretti inseriti nel path corrispondente
 		String path = "Sequenze_SDR_2015/Sequenza_"+numeroSeq+"/output_"+numeroOutput+".dat";
+		
 		//lettura sequenza
 		System.out.println("Sto leggendo la Sequenza "+numeroSeq+", Output numero "+numeroOutput+"...");
 		Signal segnale = FileReading.creaSegnaleDaFile(path);
+		System.out.println("Lettura avvenuta con successo. ");
+		
+		//stampa sequenza
 //		System.out.println("Inizio stampa segnale da file...");
 //		System.out.println(segnale.toString());
 //		System.out.println("Fine stampa segnale da file.");
+
+        JFrame testFrame = new JFrame();
+        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        SignalGraph graph = new SignalGraph(segnale);
+        testFrame.add(graph);
+        testFrame.setBounds(100, 100, 764, 470);
+        testFrame.setVisible(true);
+		
 		//calcolo soglia
+        //inserisco da input il numero di prove da effettuare
+		String numeroProve = JOptionPane.showInputDialog ( "Digita il numero di prove che vuoi effettuare per il calcolo della soglia" );
+		int nP = 0;
+		check=false;
+		while(true){
+			try{
+				nP = Integer.parseInt(numeroProve);
+			}
+			catch(NumberFormatException e){
+				check=true;
+			}
+			if((nP>-1) && (check==false)){
+				break;
+			}
+			check=false;
+			numeroProve = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il numero di prove che vuoi effettuare per il calcolo della soglia" );
+		}
+		String numeroBlocchi = JOptionPane.showInputDialog ( "Digita il numero di blocchi per il calcolo della soglia" );
+		int nB = 0;
+		check=false;
+		while(true){
+			try{
+				nB = Integer.parseInt(numeroBlocchi);
+			}
+			catch(NumberFormatException e){
+				check=true;
+			}
+			if((nB>-1) && (check==false)){
+				break;
+			}
+			check=false;
+			numeroBlocchi = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il numero di blocchi per il calcolo della soglia" );
+		}
+		String valPfa = JOptionPane.showInputDialog ( "Digita il valore della PFA per il calcolo della soglia (compreso tra 0 e 1)" );
+		double nPfa = 0;
+		check=false;
+		while(true){
+			try{
+				nPfa = Double.parseDouble(valPfa);
+			}
+			catch(NumberFormatException e){
+				check=true;
+			}
+			if((nPfa>=0.0 && nPfa<=1.0) && (check==false)){
+				break;
+			}
+			check=false;
+			valPfa = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il valore della PFA per il calcolo della soglia (compreso tra 0 e 1)" );
+		}
+		Soglia soglia = new Soglia(segnale, 3.1, nP, nB, nPfa);
 		System.out.println("");
-		System.out.println("Calcolo della soglia...");
-		Soglia soglia = new Soglia(segnale, 3.1, 10, 13, 0.001);
+		System.out.print("SNR = "+3.1+", ");
+		System.out.print("numero prove = "+nP+", ");
+		System.out.print("numero blocchi = "+nB+", ");
+		System.out.print("PFA = "+nPfa+". \n");
+		System.out.println("Sto calcolando la soglia...");
 		double sogliaVal = soglia.determina();
 		System.out.println("Valore soglia = "+sogliaVal);
 		System.out.println("");
+		
 		//confronto soglia, spectrum hole detection
 		boolean confrontoSoglia = confronto_soglia(segnale, 3.1, sogliaVal);
 		if(confrontoSoglia==true){
