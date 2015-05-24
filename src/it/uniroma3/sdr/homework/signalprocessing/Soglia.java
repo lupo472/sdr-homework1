@@ -14,7 +14,13 @@ public class Soglia extends EnergyDetector {
 		super(signal, SNR, num_prove, num_blocchi);
 		this.Pfa = Pfa;
 	}
-
+	
+	/**
+	 * Metodo che determina la soglia a partire da un segnale.
+	 * <strong>Attenzione</strong> : se il numero di blocchi è pari a 1, il 
+	 * 	metodo restituisce NaN.
+	 * @return soglia
+	 */
 	public double determina(){
 		double[] z = new double[this.getNum_prove()]; //array delle energie del segnale in ogni prova
 		double soglia = 0;
@@ -30,7 +36,7 @@ public class Soglia extends EnergyDetector {
 				sign_mod = sign_mod + detector_out;
 			}
 
-			z[i] = (double)sign_mod/(double)this.getNum_blocchi();//calcolo dell'elemento i dell'array delle energie delle prove
+			z[i] = sign_mod/(double)this.getNum_blocchi();//calcolo dell'elemento i dell'array delle energie delle prove
 
 		}
 

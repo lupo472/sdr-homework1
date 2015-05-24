@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.geom.*;
 import it.uniroma3.sdr.homework.model.*;
 
+
 public class SignalGraph extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private Signal segnale;
