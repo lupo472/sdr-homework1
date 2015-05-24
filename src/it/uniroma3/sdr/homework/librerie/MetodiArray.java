@@ -17,11 +17,10 @@ public class MetodiArray {
 	public static double sommaElementiArray(double[] array){
 		double sum = 0;
 
-		for(double i : array)
-			sum += i;
-
+		for(int i=0; i<array.length; i++){
+			sum += array[i];
+		}
 		return sum;
-
 	}
 
 	/**
@@ -31,11 +30,11 @@ public class MetodiArray {
 	 * @return stesso array di double, i cui elementi per� sono stati messi a modulo e alla potenza di 2
 	 */
 	public static double[] moduloQuadrato(double[] array){
-
-		for(double i : array)
-			i = Math.pow(Math.abs(i),2);
-
-		return array;
+		double [] result = new double[array.length];
+		for(int i=0; i<result.length; i++){
+			result[i]=Math.pow(Math.abs(array[i]), 2);
+		}
+		return result;
 	}
 	
 	/**

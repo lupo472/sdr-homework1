@@ -91,12 +91,12 @@ public class SignalProcessor {
 //		System.out.println(segnale.toString());
 //		System.out.println("Fine stampa segnale da file.");
 
-        JFrame testFrame = new JFrame();
-        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        SignalGraph graph = new SignalGraph(segnale);
-        testFrame.add(graph);
-        testFrame.setBounds(100, 100, 764, 470);
-        testFrame.setVisible(true);
+//        JFrame testFrame = new JFrame();
+//        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        SignalGraph graph = new SignalGraph(segnale);
+//        testFrame.add(graph);
+//        testFrame.setBounds(100, 100, 764, 470);
+//        testFrame.setVisible(true);
 		
 		//calcolo soglia
         //inserisco da input il numero di prove da effettuare
