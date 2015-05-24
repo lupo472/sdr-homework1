@@ -182,13 +182,12 @@ public class SignalProcessor {
 			valPfa = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il valore della PFA per il calcolo della soglia (compreso tra 0 e 1)" );
 		}
 		double Snr = SNR.calcolaSNR(segnale);
-		Snr = 3.1; //INSERITO TALE VALORE PERCHE' SNR DA ANCORA COME VALORE NaN.
 		Soglia soglia = new Soglia(segnale, Snr, nP, nB, nPfa);
 		System.out.println("");
-		System.out.print("SNR = "+Snr+", ");
-		System.out.print("numero prove = "+nP+", ");
+		System.out.print("Numero prove = "+nP+", ");
 		System.out.print("numero blocchi = "+nB+", ");
-		System.out.print("PFA = "+nPfa+". \n");
+		System.out.print("PFA = "+nPfa+", ");
+		System.out.print("SNR = "+Snr+".\n");
 		System.out.println("Sto calcolando la soglia...");
 		double sogliaVal = soglia.determina();
 		System.out.println("Valore soglia = "+sogliaVal);
@@ -197,12 +196,12 @@ public class SignalProcessor {
 		//confronto soglia, spectrum hole detection
 		boolean confrontoSoglia = confronto_soglia(segnale,SNR.calcolaSNR(segnale), sogliaVal);
 		if(confrontoSoglia==true){
-			System.out.println("e' presente lo spectrum hole.");
+			System.out.println("E' presente lo spectrum hole.");
 		}
 		else{
 			System.out.println("NON e' presente lo spectrum hole.");
 		}
-		ProbabilitaDetection proDet = new ProbabilitaDetection(segnale, SNR.calcolaSNR(segnale), 2, 3, sogliaVal);
+		ProbabilitaDetection proDet = new ProbabilitaDetection(segnale, Snr, nP, nB, sogliaVal);
 		System.out.println("");
 		System.out.println("Calcolo della probabilita' di detection...");
 		System.out.println("Probabilita' di detection = "+proDet.determina());
