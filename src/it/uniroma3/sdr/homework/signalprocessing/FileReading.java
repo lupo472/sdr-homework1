@@ -5,7 +5,18 @@ import java.util.*;
 
 import it.uniroma3.sdr.homework.model.*;
 
+/**
+ * Classe che si occupa della lettora delle sequenze
+ * dei segnali da elaborare, da cui poi forma un oggetto <strong>Signal</strong>
+ *
+ */
 public class FileReading {
+	
+	/**
+	 * Metodo che legge un segnale da file.
+	 * @param nomeFile : stringa della locazione in memoria del segnale da leggere
+	 * @return m : array di array rappresentante il segnale letto
+	 */
 	public static double[][] fileReader(String nomeFile){
 		Scanner scanner = null;
 		
@@ -58,6 +69,12 @@ public class FileReading {
         return m;
 	}
 	
+	/**
+	 * Metodo che crea un oggetto <strong>Signal</strong> da un array di array di double
+	 * letti da file.
+	 * @param nomeFile : stringa della locazione in memoria del segnale da leggere
+	 * @return s : segnale letto
+	 */
 	public static Signal creaSegnaleDaFile(String nomeFile){
 		double[][] m = fileReader(nomeFile);
 		Signal s = new Signal(m.length);
@@ -72,19 +89,5 @@ public class FileReading {
 		return s;
 	}
 	
-//	public static void main(String[] args) throws IOException{
-//		double[][] m = fileReader("Sequenze_SDR_2015/Sequenza_1/output_3.dat");
-//		//stampa di m;
-//		for(int i=0; i<m.length; i++){
-//			System.out.println("[Re: "+m[i][0]+", Im: "+m[i][1]+"]");
-//		}	
-//		
-//		Signal segnale = FileReading.creaSegnaleDaFile("Sequenze_SDR_2015/Sequenza_1/output_3.dat");
-//		for(int i=0; i<m.length; i++){
-//			System.out.println("[Re: "+segnale.getReale()[i]+", Im: "+segnale.getImmaginaria()[i]+"]");
-//		}	
-//		System.out.println(segnale.toString());
-//
-//	}
 	
 }

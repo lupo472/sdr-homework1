@@ -3,6 +3,10 @@ package it.uniroma3.sdr.homework.signalprocessing;
 import it.uniroma3.sdr.homework.librerie.*;
 import it.uniroma3.sdr.homework.model.Signal;
 
+/**
+ * Classe relativa al calcolo del'SNR del segnale letto
+ *
+ */
 public class SNR {
 	
 	public static double calcolaSNR(Signal signal){

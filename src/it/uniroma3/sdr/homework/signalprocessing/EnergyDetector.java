@@ -4,6 +4,11 @@ import it.uniroma3.sdr.homework.librerie.MetodiArray;
 import it.uniroma3.sdr.homework.model.Noise;
 import it.uniroma3.sdr.homework.model.Signal;
 
+/**
+ * Classe astratta utilizzata per semplificare e ridurre il codice delle classi 
+ * <strong>Soglia</strong> e <strong>ProbabilitaDetection</Strong>
+ *
+ */
 public abstract class EnergyDetector {
 	
 	private Signal signal;
@@ -20,12 +25,18 @@ public abstract class EnergyDetector {
 	
 	/** METODI **/
 	
+	/**
+	 * Metodo astratto per la determinazione della Soglia/Probabilità di detection
+	 * @return un double rappresentante la Soglia/probabilità di detection
+	 */
 	public abstract double determina();
 	
 	
 	
 	/**
-	 * Metodo per il popolamento dei blocchi del rumore totale, utilizzato per il calcolo della soglia
+	 * Metodo per il popolamento dei blocchi del rumore totale, 
+	 * utilizzato per il calcolo della soglia e della probabilità
+	 * di detection.
 	 * 
 	 * @param noise_blocks : array di array (matrice) vuoto
 	 * @return noise :array di array (matrice) le cui righe (blocchi) sono costituite da rumore
