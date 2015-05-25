@@ -26,8 +26,7 @@ public class Soglia extends EnergyDetector {
 		double soglia = 0;
 
 		for(int i = 0;i<this.getNum_prove();i++){
-			double[][] noise_blocks = new double[this.getNum_blocchi()][this.getSignal().getLughezza()];//array di array che conterr� come righe la somma degli array di parteImmaginaria e reale di  rumori
-			noise_blocks = popolaBlocchiNoise(noise_blocks);
+			double[][] noise_blocks = popolaBlocchiNoise();//array di array che conterr� come righe la somma degli array di parteImmaginaria e reale di  rumori
 
 			double sign_mod = 0;//sommatoria dei moduli quadrati dei blocchi di rumore
 
@@ -41,7 +40,7 @@ public class Soglia extends EnergyDetector {
 		}
 
 		try {
-			soglia = MeanVar.mean(z)+(Math.sqrt(2*MeanVar.var(z))*InvErf.inverf(1-2*Pfa));//mi ricavo la soglia
+			soglia = MeanVar.mean(z)+(Math.sqrt(2*MeanVar.var(z))*InvErf.inverf(1-2*this.Pfa));//mi ricavo la soglia
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

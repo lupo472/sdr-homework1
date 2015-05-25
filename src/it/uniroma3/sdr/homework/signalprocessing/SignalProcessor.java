@@ -43,6 +43,9 @@ public class SignalProcessor {
 	return hole;
 	}
 	
+	/*
+	 * Main che contiene parte grafica di richiesta di parametri e inizializzazione dei calcoli
+	 */
 	public static void main(String[] args) throws IOException{
 		
 		//carico valori da analizzare da input
@@ -101,7 +104,7 @@ public class SignalProcessor {
 		//calcolo soglia
         //inserisco da input il numero di prove da effettuare
 		String numeroProve = JOptionPane.showInputDialog ( "Digita il numero di prove che vuoi effettuare per il calcolo della soglia" );
-		int nP = 0;
+		int nP = 0;//numero delle prove
 		check=false;
 		while(true){
 			try{

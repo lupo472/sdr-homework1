@@ -29,28 +29,27 @@ public class ProbabilitaDetection extends EnergyDetector {
 		double Pd = 0; //probabilità di detection
 		double[] z = new double[this.getNum_prove()];//array energia
 		double cont = 0; //variabile contatore
+		double[] pri_signal = MetodiArray.sommaArray(this.getSignal().getImmaginaria(), this.getSignal().getReale());//somma parte reale e immmaginaria del segnale
 
 		for(int i = 0;i<this.getNum_prove();i++){
-			double[][] noise_blocks = new double[this.getNum_blocchi()][this.getSignal().getLughezza()];//array di array che conterrà come righe la somma degli array di parteImmaginaria e reale di  rumori
-			noise_blocks = popolaBlocchiNoise(noise_blocks);
+			double[][] noise_blocks = popolaBlocchiNoise();//array di array che conterrà come righe la somma degli array di parteImmaginaria e reale di  rumori
 
 			double sign_mod = 0;//sommatoria dei moduli quadrati dei blocchi di rumore
 
 			for(int j = 0;j<this.getNum_blocchi();j++){
-				double[] pri_signal = MetodiArray.sommaArray(this.getSignal().getImmaginaria(), this.getSignal().getReale());//somma parte reale e immmaginaria del segnale
+				
 				double[] sign_noise = MetodiArray.sommaArray(pri_signal, noise_blocks[j]);//somma tra il segnale e un blocco di rumore
 				double detector_out = MetodiArray.sommaElementiArray(MetodiArray.moduloQuadrato(sign_noise));//modulo quadrato del blocco rumore
 				sign_mod += detector_out;
 			}
 
 			z[i] = (double)sign_mod/(double)this.getNum_blocchi();//calcolo dell'elemento i dell'array delle energie delle prove
-
-			if(z[i] > soglia)
+			System.out.println(z[i]);
+			if(z[i] > this.soglia)
 				cont++;
 
 		}
-		Pd = (double)cont/(double)this.getNum_prove();//probabilità di detection
-
+		Pd = cont/(double)this.getNum_prove();//probabilità di detection
 		return Pd;
 	}
 

@@ -42,15 +42,17 @@ public abstract class EnergyDetector {
 	 * @return noise :array di array (matrice) le cui righe (blocchi) sono costituite da rumore
 	 * 
 	 */
-	protected double[][] popolaBlocchiNoise(double[][] noise_blocks){
+	protected double[][] popolaBlocchiNoise(){
+		
+		double[][] temp = new double[this.num_blocchi][];
 
-		for(int i = 0;i<this.getNum_blocchi();i++){
-			Noise noise_block = new Noise(this.getSNR(),this.getSignal().getLughezza());//rumore del blocco[n]
+		for(int i = 0;i<this.num_blocchi;i++){
+			Noise noise_block = new Noise(this.SNR,this.signal.getLughezza());//rumore del blocco[n]
 			double[] pri_noise = MetodiArray.sommaArray(noise_block.getParteReale(), noise_block.getParteImmaginaria());//array somma parte reale e immaginaria del rumore blocco[n]
-			noise_blocks[i] = pri_noise;//pongo la somma dei due array parteImmaginaria e parteReale del rumore in un unico array
+			temp[i] = pri_noise;//pongo la somma dei due array parteImmaginaria e parteReale del rumore in un unico array
 		}
 
-		return noise_blocks;
+		return temp;
 	}
 	
 	
