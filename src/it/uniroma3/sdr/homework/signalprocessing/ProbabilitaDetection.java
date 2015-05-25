@@ -44,12 +44,14 @@ public class ProbabilitaDetection extends EnergyDetector {
 			}
 
 			z[i] = (double)sign_mod/(double)this.getNum_blocchi();//calcolo dell'elemento i dell'array delle energie delle prove
-			System.out.println(z[i]);
+			
 			if(z[i] > this.soglia)
 				cont++;
 
 		}
+		
 		Pd = cont/(double)this.getNum_prove();//probabilità di detection
+		
 		return Pd;
 	}
 

@@ -90,17 +90,7 @@ public class SignalProcessor {
 		System.out.println("Lettura avvenuta con successo. ");
 		
 		//stampa sequenza
-//		System.out.println("Inizio stampa segnale da file...");
-//		System.out.println(segnale.toString());
-//		System.out.println("Fine stampa segnale da file.");
 
-//        JFrame testFrame = new JFrame();
-//        testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        SignalGraph graph = new SignalGraph(segnale);
-//        testFrame.add(graph);
-//        testFrame.setBounds(100, 100, 764, 470);
-//        testFrame.setVisible(true);
-		
 		//calcolo soglia
         //inserisco da input il numero di prove da effettuare
 		String numeroProve = JOptionPane.showInputDialog ( "Digita il numero di prove che vuoi effettuare per il calcolo della soglia" );
@@ -151,20 +141,26 @@ public class SignalProcessor {
 			check=false;
 			valPfa = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il valore della PFA per il calcolo della soglia (compreso tra 0 e 1)" );
 		}
-		double Snr = SNR.calcolaSNR(segnale);
+		
+		double Snr = SNR.calcolaSNR(segnale); 
+		
 		Soglia soglia = new Soglia(segnale, Snr, nP, nB, nPfa);
+		
 		System.out.println("");
 		System.out.print("Numero prove = "+nP+", ");
 		System.out.print("numero blocchi = "+nB+", ");
 		System.out.print("PFA = "+nPfa+", ");
 		System.out.print("SNR = "+Snr+".\n");
 		System.out.println("Sto calcolando la soglia...");
+		
 		double sogliaVal = soglia.determina();
+		
 		System.out.println("Valore soglia = "+sogliaVal);
 		System.out.println("");
 		
 		//confronto soglia, spectrum hole detection
 		boolean confrontoSoglia = confronto_soglia(segnale,Snr, sogliaVal);
+		
 		if(confrontoSoglia==true){
 			System.out.println("E' presente lo spectrum hole.");
 		}
