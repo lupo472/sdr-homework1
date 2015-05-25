@@ -48,7 +48,7 @@ public class SignalProcessor {
 	 */
 	public static void main(String[] args) throws IOException{
 		
-		//carico valori da analizzare da input
+		//<-- PARTE DI LETTURA PARAMETRI E SEGNALE -->
 		double d = 0.0;
 		String numeroSeq = JOptionPane.showInputDialog ( "Digita il numero della sequenza che vuoi analizzare (da 1 a 3)" );
 		boolean check = false;
@@ -109,6 +109,7 @@ public class SignalProcessor {
 			check=false;
 			numeroProve = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il numero di prove che vuoi effettuare per il calcolo della soglia" );
 		}
+		
 		String numeroBlocchi = JOptionPane.showInputDialog ( "Digita il numero di blocchi per il calcolo della soglia" );
 		int nB = 0;
 		check=false;
@@ -142,6 +143,9 @@ public class SignalProcessor {
 			valPfa = JOptionPane.showInputDialog ( "Valore inserito errato.\nDigita il valore della PFA per il calcolo della soglia (compreso tra 0 e 1)" );
 		}
 		
+		
+		//<-- PARTE DI CALCOLO -->
+		
 		double Snr = SNR.calcolaSNR(segnale); 
 		
 		Soglia soglia = new Soglia(segnale, Snr, nP, nB, nPfa);
@@ -167,7 +171,9 @@ public class SignalProcessor {
 		else{
 			System.out.println("NON e' presente lo spectrum hole.");
 		}
-		ProbabilitaDetection proDet = new ProbabilitaDetection(segnale, Snr, nP, nB, sogliaVal);
+		
+		ProbabilitaDetection proDet = new ProbabilitaDetection(segnale, Snr, nP, nB, sogliaVal);//calcolo probabilità detection
+		
 		System.out.println("");
 		System.out.println("Calcolo della probabilita' di detection...");
 		System.out.println("Probabilita' di detection = "+proDet.determina());
